@@ -1,24 +1,27 @@
 <?php
 
 // Change these values to use.
-const VALUE1 = 99;
-const VALUE2 = 100;
+const VALUE1 = 1;
+const VALUE2 = 101;
 
 
 function findPrimesInRange($input1, $input2) {
-    // Input Validation
+    
+    // Input Validation Start
     
     // Make sure both inputs are integers.
     if ( !is_int($input1) || !is_int($input2) ) {
         die('Error: Non-Integer Input Detected. Please enter integers.');
     }
-    
+
     // Make sure both inputs are positive.
     if ( !( $input1 > 0 ) || !( $input2 > 0) ) {
         die('Error: Expected positive numbers.');
     }
+
+    // Input Validation End
     
-    
+        
     // Set lesser value to be $startValue; greater valuer to $endValue
     if ($input1 <= $input2) {
         $startValue = $input1;
@@ -58,13 +61,13 @@ function determineIfPrime($value) {
     
     $numerator = $value;
     $startDenominator = 2;
-    $maxDenominator = ( ( $value / 2 ) - 1 );
-    
-    
+    $maxDenominator = ( ( $value / 2 ) );
+
     for ( $denominator = $startDenominator; $denominator <= $maxDenominator; $denominator++ ) {
-        
-        if ( $numerator % $denominator == 0 ) {
+        $quotient = ( $numerator / $denominator );
+        if ( is_int( $quotient ) ) {;
             return false;
+
         }
     }
     return true;
@@ -76,9 +79,6 @@ function performUnitTest() {
     
     $first26primes = array(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101);
     $test26primes = findPrimesInRange(1, 101);
-    
-    print_r($first26primes);
-    print_r($test26primes);
     
     if ( $first26primes !== $test26primes ) {
         echo 'Error: First 26 Primes test failed. <br>';
